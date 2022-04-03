@@ -1,0 +1,101 @@
+{% extends 'disc_base.html' %}
+{% block title %}
+Home Page
+{% endblock %}
+{% block content %}
+
+<!-- <background-image src="{{ url_for('static', filename='images/basket_art.jpg')}}" >  </background-image> -->
+
+<style>
+    body {
+      background-image: url('static/images/svartvit_korg.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: right;
+      background-size: cover;
+    }
+</style>
+
+<body>
+
+<center><h1>Click the button to randomize throws!</h1>
+
+<form method='get'>
+    
+</form>
+
+
+<form method='post'>
+    <!-- <input type="checkbox" id="Putter" name="disc1" value="Putter">
+    <label for="Putter"> Putter</label><br> -->
+    <!-- <div style = "position:relative; left:80px; top:2px;">  background-color:rgb(175, 166, 166); -->
+    
+    
+    <p><b>Discs:</b></p>
+    <input type="checkbox" id="alldiscs" name="disc" value="AllDiscs">
+    <label for="AllDiscs"> Select All</label><br>
+    {% with discs_list = disc_list %}
+    {% if discs_list %}
+        {% for disc in discs_list %}
+            <input type="checkbox" id={{disc}} name="disc" value={{disc}}>
+            <label for={{disc}}> {{disc}}</label><br>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- <input type="checkbox" id="alldiscs" name="disc" value="All">
+    <label for="All"> Select All</label><br>
+    <input type="checkbox" id="Putter" name="disc" value="Putter">
+    <label for="Putter"> Putter</label><br>
+    <input type="checkbox" id="Midrange" name="disc" value="Midrange">
+    <label for="Midrange"> Midrange</label><br>
+    <input type="checkbox" id="Fairway" name="disc" value="Fairway">
+    <label for="Fairway"> Fairway</label><br>
+    <input type="checkbox" id="Driver" name="disc" value="Driver">
+    <label for="Driver"> Driver</label><br> -->
+
+    <p><b>Throwing styles:</b></p>
+    <input type="checkbox" id="allthrows" name="throw_style" value="AllThrows">
+    <label for="AllThrows"> Select All</label><br>
+    {% with throw_styles_list = throw_list %}
+    {% if throw_styles_list %}
+        {% for throw_style in throw_styles_list %}
+            <input type="checkbox" id={{throw_style}} name="throw_style" value={{throw_style}}>
+            <label for={{throw_style}}> {{throw_style}}</label><br>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+
+    <!-- </div> -->
+
+    <!-- <script> 
+        $('alldiscs').click(function(e){ 
+            if (e.target.checked) { 
+              localStorage.checked = true; 
+          } else { 
+              localStorage.checked = false; 
+          } 
+        }) 
+         
+        $( document ).ready(function() { 
+           
+            document.querySelector('#checkBox').checked = localStorage.checked 
+           
+        }); 
+    </script>  -->
+    <p><input type='submit' value='Random throw'></p>
+</form></center>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for throw in messages %}
+        <center><p style="font-size:250%;">{{throw}}</p></center>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+</body>
+<!-- <image style="background-image: url('images/basket.jpg');"> -->
+
+    <!-- src="{{ url_for('static', filename='images/basket.jpg')}} -->
+{% endblock %}
+
